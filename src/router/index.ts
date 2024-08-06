@@ -1,7 +1,8 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
 const Main = () => import('@/pages/Main.vue')
-
+const Detail = () => import('@/pages/Detail.vue')
+const UI = () => import('@/pages/Ui.vue')
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -13,8 +14,12 @@ const router = createRouter({
         {
             path: '/tender/:id',
             name: 'tender',
-            component: () => {
-            }
+            component: Detail
+        },
+        {
+            path: '/ui',
+            name: 'tender',
+            component: UI
         }
     ],
     scrollBehavior(_to, _from, savedPosition) {

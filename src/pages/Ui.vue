@@ -4,7 +4,8 @@
 
 <template>
   <div class="page container">
-    detail
+    ui
+
   </div>
 </template>
 
