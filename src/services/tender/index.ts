@@ -15,8 +15,8 @@ export type TenderItem = {
 }
 
 export class TenderService {
-    static async getList(page: number | string): Promise<TenderItem[]> {
+    static async getList(page: number | string, count: number): Promise<TenderItem[]> {
         const response = await request(`/list/?page=${page}`, 'GET')
-        return response.data
+        return response.data.splice(0, count)
     }
 }

@@ -5,7 +5,6 @@ import Card from "@/components/ui/card/Card.vue";
 type CProps = {
   title: string
   category: string
-  description: string
   date: string
   deadline_date: string
   awarded_value: string

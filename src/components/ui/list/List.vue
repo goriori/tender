@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import TenderCard from "@/components/ui/card/tender-card/TenderCard.vue";
 import {TenderItem} from "@/services/tender";
+import {useTenderStore} from "@/store/tender.store.ts";
 
 type LProps = {
   list: TenderItem[],
   column: number | string
 }
 defineProps<LProps>()
+const tenderStore = useTenderStore()
+const onTargetTender = (tender: TenderItem) => {
+  tenderStore.setTargetTender(tender)
+}
 </script>
 
 <template>
@@ -16,11 +21,11 @@ defineProps<LProps>()
         :title="item.title"
         :date="item.date"
         :deadline_date="item.deadline_date"
-        :description="item.description"
         :category="item.category"
         :awarded_value="item.awarded_value"
         :awarded_currency="item.awarded_currency"
         :awarded_value_eur="item.awarded_value_eur"
+        @click="onTargetTender(item)"
     />
   </section>
 </template>
