@@ -2,11 +2,13 @@
 
 .container {
   width: 100%;
-  max-width: 1800px;
+  max-width: 1920px;
   margin: 0 auto;
   @media (max-width: $md1 + px) {
   }
   @media (max-width: $md2 + px) {
+    max-width: 1200px;
+
   }
   @media (max-width: $md3 + px) {
   }
