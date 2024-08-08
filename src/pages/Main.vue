@@ -14,7 +14,7 @@ const applicationStore = useApplicationStore()
 const tenderStore = useTenderStore()
 const isLoading = computed(() => applicationStore.getStateLoading())
 const tenders = computed(() => tenderStore.getTenderSearchList())
-
+const tendersIsNotNull = computed(() => tenders.value.length > 0)
 
 onMounted(async () => {
   applicationStore.setStateLoading(true)
@@ -28,22 +28,28 @@ onMounted(async () => {
 </script>
 <template>
   <div class="page container">
-    <TransitionGroup name="fade">
+    <Transition name="fade">
       <MainLoader v-if="isLoading" class="page-loader"/>
-      <div class="page-search">
-        <SearchTenderModule v-if="!isLoading"/>
+    </Transition>
+    <Transition name="fade">
+      <div class="page-search" v-if="!isLoading">
+        <SearchTenderModule/>
       </div>
-      <div class="page-list">
-        <List v-if="!isLoading && tenders.length > 0" :column="5" :list="tenders" class="list"/>
-        <p v-else-if="!isLoading && tenders.length === 0" class="list-empty">Ничего не найдено</p>
+    </Transition>
+    <Transition name="fade">
+      <div class="page-list" v-if="!isLoading">
+        <List v-if=" tendersIsNotNull" :column="5" :list="tenders" class="list"/>
+        <p v-else class="list-empty">Ничего не найдено</p>
       </div>
-      <div class="page-pagination">
+    </Transition>
+    <Transition name="fade">
+      <div class="page-pagination" v-if="!isLoading">
         <PaginationModule
-            v-if="tenders.length > 0 && !isLoading"
+            v-if="tendersIsNotNull "
             class="page-pagination"
         />
       </div>
-    </TransitionGroup>
+    </Transition>
   </div>
 </template>
 
@@ -68,9 +74,11 @@ onMounted(async () => {
   &-search {
     flex: 1 0 5vh;
   }
+
   &-list {
     flex: 1 0 80vh;
   }
+
   &-pagination {
     flex: 1 0 10vh;
   }
