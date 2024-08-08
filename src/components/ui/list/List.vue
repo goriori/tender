@@ -35,6 +35,7 @@ const onTargetTender = (tender: TenderItem) => {
 
 .list {
   width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(v-bind(column), 1fr);
   gap: 20px;
