@@ -1,30 +1,28 @@
 <script setup lang="ts">
-import TenderCard from "@/components/ui/card/tender-card/TenderCard.vue";
-import {TenderItem} from "@/services/tender";
-import {useTenderStore} from "@/store/tender.store.ts";
+import {TenderListItem} from "@/services/tender";
+import {DefineComponent} from "vue";
 
 type LProps = {
-  list: TenderItem[],
+  list: TenderListItem[],
   column: number | string
+  card: DefineComponent
+}
+type LEmits = {
+  (eventName: 'onTarget', item: TenderListItem): void
 }
 defineProps<LProps>()
-const tenderStore = useTenderStore()
-const onTargetTender = (tender: TenderItem) => {
-  tenderStore.setTargetTender(tender)
+const emits = defineEmits<LEmits>()
+const onTargetTender = (tender: TenderListItem) => {
+  emits('onTarget', tender)
 }
 </script>
 
 <template>
   <section class="list">
-    <TenderCard
+    <component
+        :is="card"
         v-for="item in list" :key="item.id"
-        :title="item.title"
-        :date="item.date"
-        :deadline_date="item.deadline_date"
-        :category="item.category"
-        :awarded_value="item.awarded_value"
-        :awarded_currency="item.awarded_currency"
-        :awarded_value_eur="item.awarded_value_eur"
+        v-bind="item"
         @click="onTargetTender(item)"
     />
   </section>

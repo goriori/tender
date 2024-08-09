@@ -1,16 +1,16 @@
 import {defineStore} from "pinia";
 import {ref} from "vue";
-import {TenderItem} from "@/services/tender";
+import {TenderItem, TenderListItem} from "@/services/tender";
 
 export const useTenderStore = defineStore('tender', () => {
-    const tenders = ref<TenderItem[]>([])
-    const tenderSearchList = ref<TenderItem[]>([])
+    const tenders = ref<TenderListItem[]>([])
+    const tenderSearchList = ref<TenderListItem[]>([])
     const targetTender = ref<TenderItem | {}>({})
-    const setTenders = (tenderList: TenderItem[]) => tenders.value = tenderList
+    const setTenders = (tenderList: TenderListItem[]) => tenders.value = tenderList
     const getTenders = () => tenders.value
-    const setTargetTender = (tender: TenderItem) => targetTender.value = tender
+    const setTargetTender = (tender: TenderListItem) => targetTender.value = tender
     const getTargetTender = () => targetTender.value
-    const setTenderSearchList = (searchList: TenderItem[]) => tenderSearchList.value = searchList
+    const setTenderSearchList = (searchList: TenderListItem[]) => tenderSearchList.value = searchList
     const getTenderSearchList = () => tenderSearchList.value
     return {
         tenders,

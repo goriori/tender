@@ -20,6 +20,7 @@ const onPaginate = (page: number) => {
         v-for="page in pages"
         :key="page"
         :title="page"
+        :color="'secondary'"
         @click="onPaginate(page)"
     />
   </div>

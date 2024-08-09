@@ -39,11 +39,8 @@ defineProps<CProps>()
 
 <style scoped lang="scss">
 
-@mixin chip($background) {
-  padding: 5px;
-  border-radius: 10px;
-  background: $background;
-}
+@import '@/assets/scss/mixins';
+
 
 @mixin between-display() {
   display: flex;
@@ -69,11 +66,11 @@ defineProps<CProps>()
 }
 
 .deadline {
-  @include chip(#fd6043);
+  @include chip(var(--secondary-color));
 }
 
 .category {
-  @include chip(#398ec4);
+  @include chip(var(--primary-color));
   font-size: 10px;
 }
 

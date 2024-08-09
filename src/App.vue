@@ -5,9 +5,8 @@ const route = useRoute()
 
 <template>
   <RouterView v-slot="{ Component }">
-
     <template v-if="Component">
-      <transition  name="fade-page" mode="out-in">
+      <transition  name="fade" mode="out-in">
         <suspense>
           <component :is="Component" :key="route.fullPath"></component>
         </suspense>

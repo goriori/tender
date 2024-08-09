@@ -4,6 +4,7 @@ export type METHOD = 'GET' | 'POST' | 'PUT' | 'PATH' | 'DELETE'
 
 const handlerError = (err: unknown) => {
     console.log(err)
+    alert('При загрузке данны хпроизошла ошибка, попробуйте зайти чуть позже')
     throw false
 }
 

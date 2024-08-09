@@ -8,6 +8,7 @@ import List from "@/components/ui/list/List.vue";
 import MainLoader from "@/components/ui/loaders/MainLoader.vue";
 import PaginationModule from "@/components/modules/padingation/PaginationModule.vue";
 import SearchTenderModule from "@/components/modules/search-tender/SearchTenderModule.vue";
+import TenderListModule from "@/components/modules/tender-list/TenderListModule.vue";
 
 const route = useRoute()
 const applicationStore = useApplicationStore()
@@ -19,7 +20,7 @@ const tendersIsNotNull = computed(() => tenders.value.length > 0)
 onMounted(async () => {
   applicationStore.setStateLoading(true)
   const page = Number(route.query.page)
-  const list = await TenderService.getList(page || 1, 30)
+  const list = await TenderService.getTenderList(page || 1, 30)
   tenderStore.setTenders(list)
   tenderStore.setTenderSearchList(tenderStore.getTenders())
   applicationStore.setStateLoading(false)
@@ -38,7 +39,7 @@ onMounted(async () => {
     </Transition>
     <Transition name="fade">
       <div class="page-list" v-if="!isLoading">
-        <List v-if=" tendersIsNotNull" :column="5" :list="tenders" class="list"/>
+        <TenderListModule v-if=" tendersIsNotNull" class="list"/>
         <p v-else class="list-empty">Ничего не найдено</p>
       </div>
     </Transition>

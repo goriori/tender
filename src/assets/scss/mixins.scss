@@ -36,6 +36,12 @@
   }
 }
 
+@mixin chip($background) {
+  padding: 5px;
+  border-radius: 10px;
+  background: $background;
+}
+
 @mixin scrollbar() {
   &::-webkit-scrollbar {
     height: 6px;

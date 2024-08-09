@@ -2,12 +2,13 @@
 
 type BProps = {
   title: string | number
+  color: 'primary' | 'secondary'
 }
 defineProps<BProps>()
 </script>
 
 <template>
-  <button>
+  <button :class="[color]">
     {{ title }}
   </button>
 </template>
@@ -17,6 +18,14 @@ button {
   width: 100%;
   padding: 10px;
   border-radius: 5px;
-  background: #ee816e;
+  background: transparent;
+}
+
+.primary {
+  background: var(--primary-color);
+}
+
+.secondary {
+  background: var(--secondary-color);
 }
 </style>
